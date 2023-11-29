@@ -34,28 +34,37 @@ class Shop {
 
   processQuality(item) {
     if (this.notAgedBrie(item) && this.notBackstage(item)) {
-      if (item.quality > 0) {
-        if (this.notSulfuras(item)) {
-          item.quality = item.quality - 1
-        }
+      if (item.quality <= 0) {
+        return
       }
-    } else {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1
-        if (this.isBackstage(item)) {
-          if (item.sellIn < 11) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1
-            }
-          }
-          if (item.sellIn < 6) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1
-            }
-          }
-        }
+      if (!this.notSulfuras(item)) {
+        return
       }
+      item.quality = item.quality - 1
+      return
     }
+
+    if (item.quality >= 50) {
+      return
+    }
+    item.quality = item.quality + 1
+
+    if (!this.isBackstage(item)) {
+      return
+    }
+
+    if (item.sellIn < 11 && item.quality < 50) {
+      item.quality = item.quality + 1
+    }
+
+    if (item.sellIn >= 6) {
+      return
+    }
+
+    if (item.quality >= 50) {
+      return
+    }
+    item.quality = item.quality + 1
   }
 
   sellInLessZero(item) {
