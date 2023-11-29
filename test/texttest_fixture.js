@@ -34,9 +34,6 @@ function getResult() {
   return testConsole.getAllLogs()
 }
 
-let result = getResult()
-console.log(result)
-
 module.exports = {
   getResult
 }
