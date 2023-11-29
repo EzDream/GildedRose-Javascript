@@ -26,7 +26,7 @@ class Shop {
     this.items.forEach(item => {
       this.processQuality(item)
       this.sellInNotSulfuras(item)
-      this.sellInLessZeor(item)
+      this.sellInLessZero(item)
     })
 
     return this.items;
@@ -58,7 +58,7 @@ class Shop {
     }
   }
 
-  sellInLessZeor(item) {
+  sellInLessZero(item) {
     if (item.sellIn < 0) {
       if (this.notAgedBrie(item)) {
         if (this.notBackstage(item)) {
@@ -79,9 +79,10 @@ class Shop {
   }
 
   sellInNotSulfuras(item) {
-    if (this.notSulfuras(item)) {
-      item.sellIn = item.sellIn - 1
+    if (!this.notSulfuras(item)) {
+      return
     }
+    item.sellIn = item.sellIn - 1
   }
 
   notSulfuras(item) {
