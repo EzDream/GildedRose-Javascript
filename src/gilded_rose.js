@@ -59,23 +59,25 @@ class Shop {
   }
 
   sellInLessZero(item) {
-    if (item.sellIn < 0) {
-      if (this.notAgedBrie(item)) {
-        if (this.notBackstage(item)) {
-          if (item.quality > 0) {
-            if (this.notSulfuras(item)) {
-              item.quality = item.quality - 1
-            }
-          }
-        } else {
-          item.quality = item.quality - item.quality
-        }
-      } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1
-        }
-      }
+    if (item.sellIn >= 0) {
+      return
     }
+    if (!this.notAgedBrie(item) && item.quality < 50) {
+      item.quality = item.quality + 1
+      return
+    }
+    if (!this.notBackstage(item)) {
+      item.quality = item.quality - item.quality
+      return
+    }
+    if (item.quality <= 0) {
+      return
+    }
+    if (!this.notSulfuras(item)) {
+      return
+    }
+
+    item.quality = item.quality - 1
   }
 
   sellInNotSulfuras(item) {
