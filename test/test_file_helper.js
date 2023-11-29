@@ -20,11 +20,9 @@ function getExpectedData() {
   try {
     return fs.readFileSync(expectedFilePath, 'utf-8')
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
-
-console.log(getExpectedData())
 
 module.exports = {
   getExpectedData

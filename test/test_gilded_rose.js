@@ -1,11 +1,14 @@
 var {expect} = require('chai');
 var {Shop, Item} = require('../src/gilded_rose.js');
+const {getExpectedData} = require('./test_file_helper')
+const {getResult} = require('./texttest_fixture')
 describe("Gilded Rose", function() {
 
-  it("should foo", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("fixme");
+  it("alway equal expected data", function() {
+    let expectResult = getExpectedData()
+    let currentResult = getResult()
+    expect(currentResult).to.equal(expectResult);
+    console.log('pass expected data test!')
   });
 
 });
