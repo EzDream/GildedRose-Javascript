@@ -23,14 +23,17 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
-  updateQuality() {
+  updateQualities() {
     this.items.forEach(item => {
-      this.processQuality(item)
-      this.sellInNotSulfuras(item)
-      this.sellInLessZero(item)
+      this.updateOneQuality(item)
     })
-
     return this.items;
+  }
+
+  updateOneQuality(item) {
+    this.processQuality(item)
+    this.sellInNotSulfuras(item)
+    this.sellInLessZero(item)
   }
 
   processQuality(item) {

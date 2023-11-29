@@ -3,6 +3,7 @@ const { Shop, Item } = require("../src/gilded_rose");
 const testConsole = require('./test_console')
 
 function getResult() {
+  testConsole.clearLogs()
 
   const items = [
     new Item(Item.Type.Dexterity, 10, 20),
@@ -27,7 +28,7 @@ function getResult() {
     testConsole.log("name, sellIn, quality");
     items.forEach(
       item => testConsole.log(`${item.name}, ${item.sellIn}, ${item.quality}`));
-    gildedRose.updateQuality();
+    gildedRose.updateQualities();
     testConsole.log("")
   }
 
