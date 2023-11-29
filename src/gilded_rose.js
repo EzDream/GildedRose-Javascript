@@ -11,7 +11,8 @@ class Item {
       Backstage: 'Backstage passes to a TAFKAL80ETC concert',
       Sulfuras: 'Sulfuras, Hand of Ragnaros',
       Elixir: 'Elixir of the Mongoose',
-      Dexterity: '+5 Dexterity Vest'
+      Dexterity: '+5 Dexterity Vest',
+      Mana: 'Conjured Mana Cake'
     }
   }
 }
@@ -76,7 +77,7 @@ class Shop {
       return
     }
     if (!this.notBackstage(item)) {
-      item.quality = item.quality - item.quality
+      item.quality = 0
       return
     }
     if (item.quality <= 0) {
