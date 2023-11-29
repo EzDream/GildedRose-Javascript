@@ -10,11 +10,11 @@ function clearLogs() {
 
 function log(info) {
   logs.push(info)
-  console.log(info)
+//  console.log(info)
 }
 
 function getAllLogs() {
-  logs.join('\n')
+  return logs.join('\n')
 }
 
 module.exports = {
