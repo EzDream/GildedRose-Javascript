@@ -1,5 +1,6 @@
 
 const { Shop, Item } = require("../src/gilded_rose");
+const testConsole = require('./test_console')
 
 const items = [
   new Item("+5 Dexterity Vest", 10, 20),
@@ -18,11 +19,11 @@ const items = [
 const days = Number(process.argv[2]) || 2;
 const gildedRose = new Shop(items);
 
-console.log("OMGHAI!");
+testConsole.log("OMGHAI!");
 for (let day = 0; day < days + 1; day++) {
-  console.log(`-------- day ${day} --------`);
-  console.log("name, sellIn, quality");
-  items.forEach(item => console.log(`${item.name}, ${item.sellIn}, ${item.quality}`));
+  testConsole.log(`-------- day ${day} --------`);
+  testConsole.log("name, sellIn, quality");
+  items.forEach(item => testConsole.log(`${item.name}, ${item.sellIn}, ${item.quality}`));
   gildedRose.updateQuality();
-  console.log("")
+  testConsole.log("")
 }
