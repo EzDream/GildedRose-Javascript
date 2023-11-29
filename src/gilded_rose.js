@@ -24,52 +24,64 @@ class Shop {
   }
   updateQuality() {
     this.items.forEach(item => {
-      if (this.notAgedBrie(item) && this.notBackstage(item)) {
-        if (item.quality > 0) {
-          if (this.notSulfuras(item)) {
-            item.quality = item.quality - 1;
-          }
-        }
-      } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1;
-          if (this.isBackstage(item)) {
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.notSulfuras(item)) {
-        item.sellIn = item.sellIn - 1;
-      }
-      if (item.sellIn < 0) {
-        if (this.notAgedBrie(item)) {
-          if (this.notBackstage(item)) {
-            if (item.quality > 0) {
-              if (this.notSulfuras(item)) {
-                item.quality = item.quality - 1;
-              }
-            }
-          } else {
-            item.quality = item.quality - item.quality;
-          }
-        } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
-        }
-      }
+      this.processQuality(item)
+      this.sellInNotSulfuras(item)
+      this.sellInLessZeor(item)
     })
 
     return this.items;
+  }
+
+  processQuality(item) {
+    if (this.notAgedBrie(item) && this.notBackstage(item)) {
+      if (item.quality > 0) {
+        if (this.notSulfuras(item)) {
+          item.quality = item.quality - 1
+        }
+      }
+    } else {
+      if (item.quality < 50) {
+        item.quality = item.quality + 1
+        if (this.isBackstage(item)) {
+          if (item.sellIn < 11) {
+            if (item.quality < 50) {
+              item.quality = item.quality + 1
+            }
+          }
+          if (item.sellIn < 6) {
+            if (item.quality < 50) {
+              item.quality = item.quality + 1
+            }
+          }
+        }
+      }
+    }
+  }
+
+  sellInLessZeor(item) {
+    if (item.sellIn < 0) {
+      if (this.notAgedBrie(item)) {
+        if (this.notBackstage(item)) {
+          if (item.quality > 0) {
+            if (this.notSulfuras(item)) {
+              item.quality = item.quality - 1
+            }
+          }
+        } else {
+          item.quality = item.quality - item.quality
+        }
+      } else {
+        if (item.quality < 50) {
+          item.quality = item.quality + 1
+        }
+      }
+    }
+  }
+
+  sellInNotSulfuras(item) {
+    if (this.notSulfuras(item)) {
+      item.sellIn = item.sellIn - 1
+    }
   }
 
   notSulfuras(item) {
